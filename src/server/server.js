@@ -10,13 +10,11 @@ const keybaseClient = require('./keybase-client');
 const CHANNEL = 'grincoin#general';
 const HTTP_PORT = process.env.HTTP_PORT || 8080;
 const HTTPS_PORT = process.env.HTTPS_PORT;
-const privateKey = fs.readFileSync(process.env.PRIV_KEY_PATH);
-const certificate = fs.readFileSync(process.env.CERT_PATH);
-const chain = fs.readFileSync(process.env.CHAIN);
+const privkey = fs.readFileSync(process.env.PRIVKEY_PATH);
+const fullchain = fs.readFileSync(process.env.FULLCHAIN_PATH);
 const credentials = {
-  key: privateKey,
-  cert: certificate,
-  ca: chain,
+  key: privkey,
+  cert: fullchain,
 };
 const app = express().set('json spaces', 2);
 const httpServer = http.createServer(app);

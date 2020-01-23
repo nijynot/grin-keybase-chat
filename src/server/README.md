@@ -27,7 +27,6 @@ $ sudo touch /etc/authbind/byport/80
 $ sudo touch /etc/authbind/byport/443
 $ sudo chmod 777 /etc/authbind/byport/80
 $ sudo chmod 777 /etc/authbind/byport/443
-$ PORT=80 authbind --deep node server.js
 ```
 
 Add Let's Encrypt using Certbot
@@ -37,4 +36,9 @@ $ sudo add-apt-repository universe
 $ sudo add-apt-repository ppa:certbot/certbot
 $ sudo apt-get update
 $ sudo apt-get install certbot
+```
+
+Start server
+```
+$ HTTP_PORT=80 HTTPS_PORT=443 PRIVKEY_PATH="/etc/..." FULLCHAIN_PATH="/etc/..." authbind --deep node server.js
 ```
