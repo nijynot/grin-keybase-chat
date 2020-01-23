@@ -4,6 +4,7 @@ import { DateTime } from 'luxon';
 import Emoji from 'emoji-js';
 import './App.css';
 
+const GRINCHATBOT_SERVER_LINK = 'http://grin.nijynot.com';
 const colorHash = new ColorHash({ lightness: [0.5, 0.5, 0.7] });
 const emoji = new Emoji();
 emoji.img_sets.twitter.path = 'https://abs.twimg.com/emoji/v2/72x72/';
@@ -58,7 +59,7 @@ function App() {
   const [team, setTeam] = useState({ teams: [{ member_count: '-' }] });
 
   useEffect(() => {
-    fetch('http://localhost:8080/messages').then((res) => {
+    fetch(`${GRINCHATBOT_SERVER_LINK}/messages`).then((res) => {
       return res.json();
     }).then((res) => {
       setData(res);
@@ -66,7 +67,7 @@ function App() {
       console.log(e);
     });
 
-    fetch('http://localhost:8080/team').then((res) => {
+    fetch(`${GRINCHATBOT_SERVER_LINK}/team`).then((res) => {
       return res.json();
     }).then((res) => {
       if (res.teams) {

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2 start server.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +17,8 @@
     "keybase-bot": "^3.2.0",
     "memory-cache": "^0.2.0",
     "node-cache": "^5.1.0"
+  },
+  "devDependencies": {
+    "pm2": "^4.2.3"
   }
 }

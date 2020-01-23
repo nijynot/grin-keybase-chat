@@ -41,6 +41,6 @@ app.get('/team', cors(), midCache('grincoin.public', 86400), (req, res) => {
   });
 });
 
-app.listen(8080, () => {
-  console.log('Listening on port: 8080');
+app.listen(process.env.PORT, () => {
+  console.log(`Listening on port: ${process.env.PORT}`);
 });
