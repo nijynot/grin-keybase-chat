@@ -2,7 +2,7 @@
 
 ## Usage
 
-Install Node.js and npm related
+Install Keybase
 ```bash
 $ adduser grinchatbot
 $ usermod -aG sudo username
@@ -14,12 +14,27 @@ $ run_keybase -g
 $ keybase oneshot -u grinchatbot --paperkey "<your paperkey>"
 ```
 
-Install Keybase
+Clone repo and install Node.js and npm. Also allow users to access port 80 and 443.
 ```bash
-$ sudo apt install nodejs
+$ curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+$ sudo apt-get install -y nodejs
 $ sudo apt install npm
 $ git clone https://github.com/nijynot/grin-keybase-chat.git
 $ cd ./server
 $ npm install
-$ node server.js
+$ sudo apt install authbind
+$ sudo touch /etc/authbind/byport/80
+$ sudo touch /etc/authbind/byport/443
+$ sudo chmod 777 /etc/authbind/byport/80
+$ sudo chmod 777 /etc/authbind/byport/443
+$ PORT=80 authbind --deep node server.js
+```
+
+Add Let's Encrypt using Certbot
+```bash
+$ sudo apt-get install software-properties-common
+$ sudo add-apt-repository universe
+$ sudo add-apt-repository ppa:certbot/certbot
+$ sudo apt-get update
+$ sudo apt-get install certbot
 ```

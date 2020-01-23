@@ -1,15 +1,27 @@
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
 const express = require('express');
 const Cache = require('node-cache');
 const cors = require('cors');
 
 const keybaseClient = require('./keybase-client');
 
-const app = express();
-const cache = new Cache();
-
-app.set('json spaces', 2);
-
 const CHANNEL = 'grincoin#general';
+const HTTP_PORT = process.env.HTTP_PORT || 8080;
+const HTTPS_PORT = process.env.HTTPS_PORT;
+const privateKey = fs.readFileSync(process.env.PRIV_KEY_PATH);
+const certificate = fs.readFileSync(process.env.CERT_PATH);
+const chain = fs.readFileSync(process.env.CHAIN);
+const credentials = {
+  key: privateKey,
+  cert: certificate,
+  ca: chain,
+};
+const app = express().set('json spaces', 2);
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+const cache = new Cache();
 
 function midCache(key, duration) {
   return (req, res, next) => {
@@ -41,6 +53,11 @@ app.get('/team', cors(), midCache('grincoin.public', 86400), (req, res) => {
   });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Listening on port: ${process.env.PORT}`);
+httpServer.listen(HTTP_PORT, () => {
+  console.log(`[info]: Starting http server on: ${HTTP_PORT}`);
 });
+if (HTTPS_PORT) {
+  httpsServer.listen(HTTPS_PORT, () => {
+    console.log(`[info]: Starting https server on: ${HTTPS_PORT}`);
+  });
+}
