@@ -51,9 +51,8 @@ async function readMessages(amount) {
 }
 
 async function getTeam() {
-  const { stdout } = await execa('keybase', ['team', 'list-members', '-j']);
-
   try {
+    const { stdout } = await execa('keybase', ['team', 'list-members', '-j']);
     return JSON.parse(stdout);
   } catch (e) {
     console.log(e);
