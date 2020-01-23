@@ -9,8 +9,6 @@ const emoji = new Emoji();
 emoji.img_sets.twitter.path = 'https://abs.twimg.com/emoji/v2/72x72/';
 emoji.img_set = 'twitter';
 
-console.log('loaded');
-
 function Message(props) {
   const { timestamp, username, body, reactions } = props.message;
 
