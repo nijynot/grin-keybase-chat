@@ -56,7 +56,7 @@ function Chat(props) {
 
 function App() {
   const [data, setData] = useState([]);
-  const [team, setTeam] = useState({ teams: [{ member_count: '-' }] });
+  const [team, setTeam] = useState({ teams: [{ member_count: '— ' }] });
 
   useEffect(() => {
     fetch(`${GRINCHATBOT_SERVER_LINK}/messages`).then((res) => {
