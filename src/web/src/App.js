@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import Emoji from 'emoji-js';
 import './App.css';
 
-const GRINCHATBOT_SERVER_LINK = 'http://grin.nijynot.com';
+const GRINCHATBOT_SERVER_LINK = 'https://grin.nijynot.com';
 const colorHash = new ColorHash({ lightness: [0.5, 0.5, 0.7] });
 const emoji = new Emoji();
 emoji.img_sets.twitter.path = 'https://abs.twimg.com/emoji/v2/72x72/';
