@@ -153,4 +153,7 @@ img.emoji {
     text-align: left;
     flex-grow: 0;
   }
+  .Chat {
+    height: 350px;
+  }
 }
