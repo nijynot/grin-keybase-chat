@@ -7,6 +7,8 @@ import './App.css';
 const GRINCHATBOT_SERVER_LINK = 'https://grin.nijynot.com';
 const colorHash = new ColorHash({ lightness: [0.5, 0.5, 0.7] });
 const emoji = new Emoji();
+emoji.supports_css = true;
+emoji.replace_mode = 'css';
 emoji.img_sets.twitter.path = 'https://abs.twimg.com/emoji/v2/72x72/';
 emoji.img_set = 'twitter';
 
@@ -19,7 +21,7 @@ function Message(props) {
       <div className="Message-user">
         <div className="Message-timestamp">{DateTime.fromSeconds(timestamp).toFormat('hh:mm a')}</div>
         <div
-          className="Message-username"
+          className="Message-useremoji.replace_modename"
           style={{ color: colorHash.hex(username) }}
         >{username}</div>
       </div>
@@ -28,7 +30,13 @@ function Message(props) {
         {reactions && (
           <div className="Message-reactions">
             {reactions.map((reaction, i) => (
-              <div key={i} className="Message-reaction" dangerouslySetInnerHTML={{ __html: emoji.replace_colons(reaction.emoji) + `<span class="Message-reactionCount">${reaction.users.length}</span>` }}></div>
+              <div
+                key={i}
+                className="Message-reaction"
+                dangerouslySetInnerHTML={{
+                  __html: emoji.replace_colons(reaction.emoji) + `<span class="Message-reactionCount">${reaction.users.length}</span>`
+                }}
+              ></div>
             ))}
           </div>
         )}
